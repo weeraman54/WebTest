@@ -467,14 +467,6 @@ const Navbar: React.FC<NavbarProps> = ({
                     className="categories-dropdown-container"
                     onMouseEnter={handleCategoriesMouseEnter}
                     onMouseLeave={handleCategoriesMouseLeave}
-                    style={{
-                      position: 'fixed',
-                      top: size === 'sm' ? '56px' : size === 'xs' ? '48px' : size === 'md' ? '72px' : size === 'lg' ? '80px' : '96px',
-                      left: '0',
-                      width: '100vw',
-                      zIndex: 9999,
-                      marginTop: '0px',
-                    }}
                   >
                     <div className="w-full">
                       <Categories />
