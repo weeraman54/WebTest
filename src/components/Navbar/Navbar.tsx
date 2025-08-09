@@ -42,6 +42,7 @@ const Navbar: React.FC<NavbarProps> = ({
   const [isCartVisible, setIsCartVisible] = useState(false);
   const [isWishlistVisible, setIsWishlistVisible] = useState(false);
   const [isCategoriesVisible, setIsCategoriesVisible] = useState(false);
+  const [categoriesTimeout, setCategoriesTimeout] = useState<NodeJS.Timeout | null>(null);
   const [isNavbarHovered, setIsNavbarHovered] = useState(false);
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
@@ -136,15 +137,28 @@ const Navbar: React.FC<NavbarProps> = ({
   const totalWishlistItems = wishlistItems.length;
 
   // Categories dropdown timeout handlers
-  // Categories dropdown click handlers
-  const handleCategoriesToggle = (e: React.MouseEvent) => {
-    e.preventDefault(); // Prevent navigation
-    e.stopPropagation(); // Prevent event bubbling
-    setIsCategoriesVisible(!isCategoriesVisible);
+  const handleCategoriesMouseEnter = () => {
+    if (categoriesTimeout) {
+      clearTimeout(categoriesTimeout);
+      setCategoriesTimeout(null);
+    }
+    setIsCategoriesVisible(true);
   };
 
-  const handleCategoriesDropdownClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent closing when clicking inside dropdown
+  const handleCategoriesMouseLeave = () => {
+    const timeout = setTimeout(() => {
+      setIsCategoriesVisible(false);
+    }, 300); // 300ms delay before hiding
+    setCategoriesTimeout(timeout);
+  };
+
+  const handleCategoriesClick = (e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent navigation
+    if (categoriesTimeout) {
+      clearTimeout(categoriesTimeout);
+      setCategoriesTimeout(null);
+    }
+    setIsCategoriesVisible(true);
   };
 
   // Check if we're in different size ranges
@@ -159,30 +173,14 @@ const Navbar: React.FC<NavbarProps> = ({
     return () => window.removeEventListener('resize', checkTabletSize);
   }, []);
 
-  // Close categories dropdown when clicking outside
+  // Cleanup timeout on unmount
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (isCategoriesVisible && !(event.target as Element).closest('.categories-dropdown-area')) {
-        setIsCategoriesVisible(false);
-      }
-    };
-
-    const handleEscapeKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isCategoriesVisible) {
-        setIsCategoriesVisible(false);
-      }
-    };
-
-    if (isCategoriesVisible) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('keydown', handleEscapeKey);
-    }
-
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleEscapeKey);
+      if (categoriesTimeout) {
+        clearTimeout(categoriesTimeout);
+      }
     };
-  }, [isCategoriesVisible]);
+  }, [categoriesTimeout]);
 
   // Close search dropdown when clicking outside or pressing escape
   useEffect(() => {
@@ -440,30 +438,35 @@ const Navbar: React.FC<NavbarProps> = ({
                 </a>
                 
                 {/* Categories Dropdown */}
-                <div className="relative flex items-center categories-dropdown-area">
-                  <div className="relative flex items-center">
-                    <button
-                      onClick={handleCategoriesToggle}
+                <div className="relative flex items-center">
+                  <div
+                    className="relative flex items-center"
+                    onMouseEnter={handleCategoriesMouseEnter}
+                    onMouseLeave={handleCategoriesMouseLeave}
+                  >
+                    <a
+                      href="/categories"
+                      onClick={handleCategoriesClick}
                       className={`
-                        ${isTabletSize ? "px-2 py-2" : currentSizeConfig.padding} font-medium transition-all duration-700 whitespace-nowrap cursor-pointer flex items-center bg-transparent border-none
+                        ${isTabletSize ? "px-2 py-2" : currentSizeConfig.padding} font-medium transition-all duration-700 whitespace-nowrap cursor-pointer flex items-center
                         ${
                           shouldShrink
                             ? `${isTabletSize ? "text-sm" : currentSizeConfig.textSizeShrunken} text-white hover:text-[#13ee9e]`
                             : `${isTabletSize ? "text-base" : currentSizeConfig.textSize} text-white hover:text-[#13ee9e]`
                         }
-                        ${isCategoriesVisible ? 'text-[#13ee9e]' : ''}
                       `}
                     >
                       Categories
-                    </button>
+                    </a>
                   </div>
                 </div>
                 
                 {/* Categories Dropdown - Fixed positioning spanning full viewport */}
                 {isCategoriesVisible && (
                   <div 
-                    className="categories-dropdown-container categories-dropdown-area"
-                    onClick={handleCategoriesDropdownClick}
+                    className="categories-dropdown-container"
+                    onMouseEnter={handleCategoriesMouseEnter}
+                    onMouseLeave={handleCategoriesMouseLeave}
                   >
                     <div className="w-full">
                       <Categories />
