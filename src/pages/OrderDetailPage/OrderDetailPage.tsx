@@ -45,16 +45,16 @@ const OrderDetailPage: React.FC = () => {
             setOrder(result.order);
           } else {
             showError('Order not found or access denied');
-            navigate('/account');
+            navigate('/account?tab=history');
           }
         } else {
           showError(result.error || 'Failed to load order details');
-          navigate('/account');
+          navigate('/account?tab=history');
         }
       } catch (error) {
         console.error('Error loading order details:', error);
         showError('Failed to load order details');
-        navigate('/account');
+        navigate('/account?tab=history');
       } finally {
         setIsLoading(false);
       }
@@ -84,7 +84,7 @@ const OrderDetailPage: React.FC = () => {
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Order not found</h2>
           <button
-            onClick={() => navigate('/account')}
+            onClick={() => navigate('/account?tab=history')}
             className="bg-[#151b25] text-white px-6 py-3 rounded-lg hover:bg-[#13ee9e] transition-colors"
           >
             Back to Account
@@ -102,7 +102,7 @@ const OrderDetailPage: React.FC = () => {
         {/* Header */}
         <div className="mb-8">
           <button
-            onClick={() => navigate('/account')}
+            onClick={() => navigate('/account?tab=history')}
             className="flex items-center text-gray-600 hover:text-gray-900 mb-4 transition-colors"
           >
             <ArrowLeftIcon className="w-5 h-5 mr-2" />

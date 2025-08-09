@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { 
   UserCircleIcon, 
   MapPinIcon, 
@@ -34,6 +34,7 @@ const convertToFormData = (profileData: UserProfileData): CheckoutFormData => {
 const AccountPage: React.FC = () => {
   const { user, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const { showSuccess, showError } = useToast();
   
   const [activeTab, setActiveTab] = useState<'details' | 'history'>('details');
@@ -77,6 +78,17 @@ const AccountPage: React.FC = () => {
       return;
     }
   }, [isAuthenticated, navigate]);
+
+  // Handle URL parameters to set active tab
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const tabParam = urlParams.get('tab');
+    if (tabParam === 'history') {
+      setActiveTab('history');
+    } else if (tabParam === 'details') {
+      setActiveTab('details');
+    }
+  }, [location.search]);
 
   // Load user data and check edit permissions
   useEffect(() => {

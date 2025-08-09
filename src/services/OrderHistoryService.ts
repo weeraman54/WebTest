@@ -126,7 +126,7 @@ export class OrderHistoryService {
     const steps = allSteps.map((step, index) => ({
       label: step.label,
       status: index < currentStatusIndex ? 'completed' as const :
-              index === currentStatusIndex ? 'current' as const :
+              index === currentStatusIndex ? (status === 'delivered' ? 'completed' as const : 'current' as const) :
               'upcoming' as const
     }));
 

@@ -13,6 +13,14 @@ interface OrderStepperProps {
 }
 
 const OrderStepper: React.FC<OrderStepperProps> = ({ steps, currentStep, orderStatus }) => {
+  // Calculate progress percentage - if delivered, show 100%
+  const getProgressPercentage = () => {
+    if (orderStatus === 'delivered') {
+      return 100;
+    }
+    return (currentStep / (steps.length - 1)) * 100;
+  };
+
   // If order is cancelled, show cancelled state
   if (orderStatus === 'cancelled') {
     return (
@@ -37,7 +45,7 @@ const OrderStepper: React.FC<OrderStepperProps> = ({ steps, currentStep, orderSt
         <div className="absolute top-5 left-0 w-full h-0.5 bg-gray-200" />
         <div 
           className="absolute top-5 left-0 h-0.5 bg-[#13ee9e] transition-all duration-300 ease-in-out"
-          style={{ width: `${(currentStep / (steps.length - 1)) * 100}%` }}
+          style={{ width: `${getProgressPercentage()}%` }}
         />
 
         {/* Steps */}
@@ -70,8 +78,11 @@ const OrderStepper: React.FC<OrderStepperProps> = ({ steps, currentStep, orderSt
                 }`}>
                   {step.label}
                 </p>
-                {step.status === 'current' && (
+                {step.status === 'current' && orderStatus !== 'delivered' && (
                   <p className="text-xs text-[#13ee9e] mt-1">Current</p>
+                )}
+                {step.status === 'completed' && step.label === 'Delivered' && (
+                  <p className="text-xs text-green-600 mt-1">Complete</p>
                 )}
               </div>
             </div>

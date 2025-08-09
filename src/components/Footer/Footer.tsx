@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
             <div className="flex space-x-4 justify-center">
               {/* Facebook */}
               <a
-                href="https://www.facebook.com/geolex"
+                href="https://www.facebook.com/geolex.lk/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 hover:bg-[#1877f2] rounded-full flex items-center justify-center transition-colors duration-300"
@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
 
               {/* WhatsApp */}
               <a
-                href="https://wa.me/+94912259242"
+                href="https://wa.me/+94740136448"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 hover:bg-[#25d366] rounded-full flex items-center justify-center transition-colors duration-300"
@@ -80,20 +80,20 @@ const Footer: React.FC = () => {
               <div className="flex items-start justify-center">
                 <MapPinIcon className="w-5 h-5 text-[#13ee9e] mr-3 mt-1 flex-shrink-0" />
                 <div className="text-gray-300 text-sm leading-relaxed text-left">
-                  <p className="mb-1">No.50, New Road,</p>
-                  <p className="mb-1">Ambalangoda, Galle,</p>
+                  <p className="mb-1">Near New Bus Stand, No. 52,</p>
+                  <p className="mb-1">Galle Road, Imaduwa</p>
                   <p>Sri Lanka</p>
                 </div>
               </div>
 
               <div className="flex items-center justify-center">
                 <PhoneIcon className="w-5 h-5 text-[#13ee9e] mr-3 flex-shrink-0" />
-                <p className="text-gray-300 text-sm">Call Us: +94 91 225 9242</p>
+                <p className="text-gray-300 text-sm">Call Us: +9474 013 6448</p>
               </div>
 
               <div className="flex items-center justify-center">
                 <EnvelopeIcon className="w-5 h-5 text-[#13ee9e] mr-3 flex-shrink-0" />
-                <p className="text-gray-300 text-sm">Email: info@geolex.lk</p>
+                <p className="text-gray-300 text-sm">Email: geolex.lk@gmail.com</p>
               </div>
             </div>
           </div>
