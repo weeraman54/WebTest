@@ -36,7 +36,7 @@ const UserProfileDropdown: React.FC<UserProfileDropdownProps> = ({ onSignInClick
       <div className="relative" ref={dropdownRef}>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center p-2 text-gray-600 hover:text-[#13ee9e] transition-colors rounded-full hover:bg-gray-100"
+          className="flex items-center p-2 text-gray-600 hover:text-[#13ee9e] transition-colors rounded-full hover:bg-gray-900"
           title="Sign In / Sign Up"
           id="user-dropdown-toggle" 
         >
@@ -50,16 +50,16 @@ const UserProfileDropdown: React.FC<UserProfileDropdownProps> = ({ onSignInClick
             <div className="absolute -top-2 right-0 w-full h-4 bg-transparent" />
             
             {/* Arrow */}
-            <div className="absolute -top-2 right-3 w-4 h-4 bg-white border-l border-t border-gray-200 transform rotate-45 z-10" />
+            {/* <div className="absolute -top-2 right-3 w-4 h-4 bg-blue-600 border-l border-t border-gray-700 transform rotate-45 z-10" /> */}
             
             {/* Menu */}
-            <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-20">
+            <div className="absolute right-0 mt-2 w-48 bg-[#151b25] rounded-lg shadow-lg border border-gray-700 py-2 z-20">
               <button
                 onClick={() => {
                   onSignInClick()
                   setIsOpen(false)
                 }}
-                className="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-700 hover:text-[#13ee9e] transition-colors"
+                className="w-full text-left px-4 py-2 hover:bg-gray-800 text-white hover:text-[#13ee9e] transition-colors"
                 id="signin-button"
               >
                 Sign In
@@ -69,7 +69,7 @@ const UserProfileDropdown: React.FC<UserProfileDropdownProps> = ({ onSignInClick
                   onSignUpClick()
                   setIsOpen(false)
                 }}
-                className="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-700 hover:text-[#13ee9e] transition-colors"
+                className="w-full text-left px-4 py-2 hover:bg-gray-800 text-white hover:text-[#13ee9e] transition-colors"
                 id="signup-button"
               >
                 Create Account
@@ -86,7 +86,7 @@ const UserProfileDropdown: React.FC<UserProfileDropdownProps> = ({ onSignInClick
       {/* Profile Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center p-2 text-gray-600 hover:text-[#13ee9e] transition-colors rounded-full hover:bg-gray-100"
+        className="flex items-center p-2 text-gray-600 hover:text-[#13ee9e] transition-colors rounded-full hover:bg-gray-900"
         title={`Signed in as ${user?.user_metadata?.full_name || user?.email}`}
         id="auth-user-dropdown-toggle"
       >
@@ -100,10 +100,10 @@ const UserProfileDropdown: React.FC<UserProfileDropdownProps> = ({ onSignInClick
           <div className="absolute -top-2 right-0 w-full h-4 bg-transparent" />
           
           {/* Arrow */}
-          <div className="absolute -top-2 right-3 w-4 h-4 bg-white border-l border-t border-gray-200 transform rotate-45 z-10" />
+          {/* <div className="absolute -top-2 right-3 w-4 h-4 bg-white border-l border-t border-gray-200 transform rotate-45 z-10" /> */}
           
           {/* Menu */}
-          <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-20">
+          <div className="absolute right-0 mt-2 w-64 bg-[#151b25] rounded-lg shadow-lg border border-gray-800 py-2 z-20">
             {/* User Info */}
             <div className="px-4 py-3 border-b border-gray-100">
               <div className="flex items-center space-x-3">
@@ -111,10 +111,10 @@ const UserProfileDropdown: React.FC<UserProfileDropdownProps> = ({ onSignInClick
                   <UserIcon className="w-6 h-6 text-white" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900 truncate">
+                  <p className="text-[1rem] font-medium text-white truncate">
                     {user?.user_metadata?.full_name || 'Customer'}
                   </p>
-                  <p className="text-xs text-gray-500 truncate">
+                  <p className="text-[0.8rem] text-white truncate">
                     {user?.email}
                   </p>
                 </div>
@@ -128,16 +128,16 @@ const UserProfileDropdown: React.FC<UserProfileDropdownProps> = ({ onSignInClick
                   setIsOpen(false)
                   navigate('/account')
                 }}
-                className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                className="w-full flex items-center px-4 py-2 text-sm text-white hover:bg-gray-800 hover:text-[#13ee9e] transition-colors"
                 id="account-settings-button"
               >
                 <Cog6ToothIcon className="w-4 h-4 mr-3" />
-                Account Settings
+                Account & Orders
               </button>
               
               <button
                 onClick={handleSignOut}
-                className="w-full flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                className="w-full flex items-center px-4 py-2 text-sm text-red-400 hover:bg-gray-800 hover:text-red-400 transition-colors"
                 id="signout-button"
               >
                 <ArrowRightOnRectangleIcon className="w-4 h-4 mr-3" />

@@ -239,7 +239,7 @@ const AccountPage: React.FC = () => {
                 onClick={() => setActiveTab('details')}
                 className={`w-full flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                   activeTab === 'details'
-                    ? 'bg-gray-100 text-gray-900'
+                    ? 'bg-gray-200 text-gray-900'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                 }`}
               >
@@ -252,15 +252,15 @@ const AccountPage: React.FC = () => {
                 onClick={() => setActiveTab('history')}
                 className={`w-full flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                   activeTab === 'history'
-                    ? 'bg-gray-100 text-gray-900'
+                    ? 'bg-gray-200 text-gray-900'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                 }`}
               >
                 <ShoppingBagIcon className="w-5 h-5 mr-3" />
                 Purchase History
-                <span className="ml-auto text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded">
+                {/* <span className="ml-auto text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded">
                   Soon
-                </span>
+                </span> */}
               </button>
             </nav>
 

@@ -46,6 +46,7 @@ const Navbar: React.FC<NavbarProps> = ({
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
+  const [categoriesHoverTimeout, setCategoriesHoverTimeout] = useState<NodeJS.Timeout | null>(null);
 
   // Cart functionality
   const handleUpdateQuantity = (id: string, quantity: number) => {
@@ -135,16 +136,45 @@ const Navbar: React.FC<NavbarProps> = ({
   const totalCartItems = cartItems.reduce((total, item) => total + item.quantity, 0);
   const totalWishlistItems = wishlistItems.length;
 
-  // Categories dropdown timeout handlers
-  // Categories dropdown click handlers
+  // Categories dropdown hover handlers
+  const handleCategoriesMouseEnter = () => {
+    if (categoriesHoverTimeout) {
+      clearTimeout(categoriesHoverTimeout);
+      setCategoriesHoverTimeout(null);
+    }
+    setIsCategoriesVisible(true);
+  };
+
+  const handleCategoriesMouseLeave = () => {
+    const timeout = setTimeout(() => {
+      setIsCategoriesVisible(false);
+    }, 200); // 200ms delay before hiding
+    setCategoriesHoverTimeout(timeout);
+  };
+
+  const handleCategoriesDropdownMouseEnter = () => {
+    if (categoriesHoverTimeout) {
+      clearTimeout(categoriesHoverTimeout);
+      setCategoriesHoverTimeout(null);
+    }
+  };
+
+  const handleCategoriesDropdownMouseLeave = () => {
+    const timeout = setTimeout(() => {
+      setIsCategoriesVisible(false);
+    }, 200);
+    setCategoriesHoverTimeout(timeout);
+  };
+
+  // Categories dropdown click handlers (keep existing click functionality)
   const handleCategoriesToggle = (e: React.MouseEvent) => {
-    e.preventDefault(); // Prevent navigation
-    e.stopPropagation(); // Prevent event bubbling
+    e.preventDefault();
+    e.stopPropagation();
     setIsCategoriesVisible(!isCategoriesVisible);
   };
 
   const handleCategoriesDropdownClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent closing when clicking inside dropdown
+    e.stopPropagation();
   };
 
   // Check if we're in different size ranges
@@ -440,8 +470,12 @@ const Navbar: React.FC<NavbarProps> = ({
                     Home
                   </a>
                   
-                  {/* Categories Button - just the button, dropdown moved outside */}
-                  <div className="relative flex items-center categories-dropdown-area">
+                  {/* Categories Button with hover functionality */}
+                  <div 
+                    className="relative flex items-center categories-dropdown-area"
+                    onMouseEnter={handleCategoriesMouseEnter}
+                    onMouseLeave={handleCategoriesMouseLeave}
+                  >
                     <div className="relative flex items-center">
                       <button
                         onClick={handleCategoriesToggle}
@@ -756,11 +790,13 @@ const Navbar: React.FC<NavbarProps> = ({
         />
       </nav>
 
-      {/* Categories Dropdown - Now completely outside the navbar structure */}
+      {/* Categories Dropdown with hover functionality */}
       {isCategoriesVisible && (
         <div 
           className="categories-dropdown-container categories-dropdown-area"
           onClick={handleCategoriesDropdownClick}
+          onMouseEnter={handleCategoriesDropdownMouseEnter}
+          onMouseLeave={handleCategoriesDropdownMouseLeave}
         >
           <div className="w-full">
             <Categories />
