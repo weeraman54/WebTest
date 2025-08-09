@@ -254,7 +254,7 @@ const Home: React.FC<HomeProps> = ({
           </h1> */}
           <p className="text-lg text-gray-600">
             Your premier destination for quality computer hardware and
-            electronics
+            accessories
           </p>
         </div>
       </main>
