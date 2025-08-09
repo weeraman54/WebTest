@@ -1,0 +1,48 @@
+/* WishlistDropdown.css */
+
+.wishlist-dropdown {
+  animation: fadeInScale 0.2s ease-out forwards;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.wishlist-dropdown:hover {
+  animation: none;
+}
+
+/* Smooth transitions for all interactive elements */
+.wishlist-dropdown button {
+  transition: all 0.2s ease-in-out;
+}
+
+.wishlist-dropdown button:hover {
+  transform: translateY(-1px);
+}
+
+/* Custom scrollbar for wishlist items */
+.wishlist-dropdown .overflow-y-auto::-webkit-scrollbar {
+  width: 6px;
+}
+
+.wishlist-dropdown .overflow-y-auto::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.wishlist-dropdown .overflow-y-auto::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.wishlist-dropdown .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}

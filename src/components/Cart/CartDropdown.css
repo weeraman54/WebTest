@@ -1,0 +1,55 @@
+/* Cart Dropdown Animations */
+.cart-dropdown-enter {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+}
+
+.cart-dropdown-enter-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: all 300ms ease-in-out;
+}
+
+.cart-dropdown-exit {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.cart-dropdown-exit-active {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+  transition: all 200ms ease-in-out;
+}
+
+/* Smooth hover effects for cart items */
+.cart-item-hover {
+  transition: all 200ms ease-in-out;
+}
+
+.cart-item-hover:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  transform: translateX(2px);
+}
+
+/* Button hover effects */
+.cart-button-primary {
+  background: linear-gradient(135deg, #13ee9e, #0fd189);
+  transition: all 200ms ease-in-out;
+}
+
+.cart-button-primary:hover {
+  background: linear-gradient(135deg, #0fd189, #0bc271);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(19, 238, 158, 0.3);
+}
+
+.cart-button-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 200ms ease-in-out;
+}
+
+.cart-button-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}

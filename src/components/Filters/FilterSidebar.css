@@ -1,0 +1,35 @@
+/* Custom checkbox styles */
+input[type="checkbox"]:checked {
+  background-color: #3B82F6;
+  border-color: #3B82F6;
+}
+
+/* Mobile filter overlay */
+@media (max-width: 1024px) {
+  .filter-sidebar-mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 50;
+  }
+  
+  .filter-sidebar-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 320px;
+    background: white;
+    z-index: 51;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filter-sidebar-content.open {
+    transform: translateX(0);
+  }
+}
