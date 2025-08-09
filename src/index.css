@@ -69,7 +69,7 @@
   right: 0 !important;
   width: 100vw !important;
   max-width: 100vw !important;
-  z-index: 9999 !important;
+  z-index: 40 !important;
   overflow: visible !important;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
   will-change: transform, opacity !important;
@@ -78,6 +78,7 @@
   margin: 0 !important;
   padding: 0 !important;
   pointer-events: auto !important;
+  transform: translateZ(0) !important;
 }
 
 /* Modal Positioning Fix */
