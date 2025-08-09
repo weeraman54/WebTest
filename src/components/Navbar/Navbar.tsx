@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
+  // MagnifyingGlassIcon,
   HeartIcon,
   ShoppingCartIcon,
   Bars3Icon,
@@ -35,14 +36,15 @@ const Navbar: React.FC<NavbarProps> = ({
   onCartChange,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // const [searchQuery, setSearchQuery] = useState("");
+  // State for search functionality - Commented out for future implementation
+  // const [searchQuery, setSearchQuery] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isTabletSize, setIsTabletSize] = useState(false);
   const [isCartVisible, setIsCartVisible] = useState(false);
   const [isWishlistVisible, setIsWishlistVisible] = useState(false);
   const [isCategoriesVisible, setIsCategoriesVisible] = useState(false);
   const [isNavbarHovered, setIsNavbarHovered] = useState(false);
-  // const [isSearchVisible, setIsSearchVisible] = useState(false);
+  // const [isSearchVisible, setIsSearchVisible] = useState(false); // Commented out for future implementation
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
   const [categoriesHoverTimeout, setCategoriesHoverTimeout] = useState<NodeJS.Timeout | null>(null);
@@ -213,7 +215,7 @@ const Navbar: React.FC<NavbarProps> = ({
     };
   }, [isCategoriesVisible]);
 
-  // // Close search dropdown when clicking outside or pressing escape
+  // Close search dropdown when clicking outside or pressing escape - Commented out for future implementation
   // useEffect(() => {
   //   const handleClickOutside = (event: MouseEvent) => {
   //     if (isSearchVisible && !(event.target as Element).closest('.search-dropdown')) {
@@ -238,7 +240,7 @@ const Navbar: React.FC<NavbarProps> = ({
   //   };
   // }, [isSearchVisible]);
 
-  // // Close search dropdown when mobile menu opens and vice versa
+  // Close search dropdown when mobile menu opens and vice versa - Commented out for future implementation
   // useEffect(() => {
   //   if (isMenuOpen) {
   //     setIsSearchVisible(false);
@@ -262,8 +264,8 @@ const Navbar: React.FC<NavbarProps> = ({
       profileIconSizeShrunken: "h-5 w-5",
       textSize: "text-sm",
       textSizeShrunken: "text-xs",
-      // searchWidth: "w-32 md:w-40",
-      // searchWidthShrunken: "w-28 md:w-32",
+      searchWidth: "w-32 md:w-40",
+      searchWidthShrunken: "w-28 md:w-32",
       spacing: "space-x-1 md:space-x-2",
       spacingShrunken: "space-x-1",
       padding: "px-1 py-1 md:px-2",
@@ -280,8 +282,8 @@ const Navbar: React.FC<NavbarProps> = ({
       profileIconSizeShrunken: "h-6 w-6",
       textSize: "text-sm md:text-base",
       textSizeShrunken: "text-xs md:text-sm",
-      // searchWidth: "w-36 md:w-70",
-      // searchWidthShrunken: "w-32 md:w-44",
+      searchWidth: "w-36 md:w-70",
+      searchWidthShrunken: "w-32 md:w-44",
       spacing: "space-x-1 md:space-x-3",
       spacingShrunken: "space-x-1 md:space-x-2",
       padding: "px-1 py-1 md:px-2",
@@ -298,8 +300,8 @@ const Navbar: React.FC<NavbarProps> = ({
       profileIconSizeShrunken: "h-10 w-10",
       textSize: "text-base md:text-xl",
       textSizeShrunken: "text-sm md:text-base",
-      // searchWidth: "w-48 md:w-72",
-      // searchWidthShrunken: "w-40 md:w-56",
+      searchWidth: "w-48 md:w-72",
+      searchWidthShrunken: "w-40 md:w-56",
       spacing: "space-x-2 md:space-x-6",
       spacingShrunken: "space-x-1 md:space-x-3",
       padding: "px-2 py-2 md:px-3",
@@ -316,8 +318,8 @@ const Navbar: React.FC<NavbarProps> = ({
       profileIconSizeShrunken: "h-11 w-11",
       textSize: "text-lg md:text-2xl",
       textSizeShrunken: "text-base md:text-lg",
-      // searchWidth: "w-56 md:w-80",
-      // searchWidthShrunken: "w-48 md:w-64",
+      searchWidth: "w-56 md:w-80",
+      searchWidthShrunken: "w-48 md:w-64",
       spacing: "space-x-3 md:space-x-8",
       spacingShrunken: "space-x-2 md:space-x-4",
       padding: "px-3 py-2 md:px-4",
@@ -334,8 +336,8 @@ const Navbar: React.FC<NavbarProps> = ({
       profileIconSizeShrunken: "h-12 w-12",
       textSize: "text-xl md:text-3xl",
       textSizeShrunken: "text-lg md:text-xl",
-      // searchWidth: "w-64 md:w-96",
-      // searchWidthShrunken: "w-56 md:w-80",
+      searchWidth: "w-64 md:w-96",
+      searchWidthShrunken: "w-56 md:w-80",
       spacing: "space-x-4 md:space-x-10",
       spacingShrunken: "space-x-3 md:space-x-5",
       padding: "px-4 py-3 md:px-5",
@@ -508,7 +510,7 @@ const Navbar: React.FC<NavbarProps> = ({
                   </a>
                 </div>
 
-                {/* Search Bar - Hidden on screens smaller than 1280px to prevent overlap */}
+                {/* Search Bar - Commented out for future implementation */}
                 {/* <div
                   className={`
                   hidden xl:flex items-center transition-all duration-700 ease-in-out
@@ -556,7 +558,7 @@ const Navbar: React.FC<NavbarProps> = ({
                 }
               `}
               >
-                {/* Search Icon - Visible on screens smaller than xl (1280px) */}
+                {/* Search Icon - Commented out for future implementation */}
                 {/* <button
                   className={`
                     xl:hidden p-2 transition-all duration-700 relative search-dropdown
@@ -655,7 +657,7 @@ const Navbar: React.FC<NavbarProps> = ({
                   />
                 </div>
 
-                {/* Profile Icon - Always visible for login access */}
+                {/* Profile Icon - Now visible on all screen sizes for mobile login access */}
                 <div className="block">
                   <UserProfileDropdown 
                     onSignInClick={() => setIsSignInModalOpen(true)}
@@ -681,7 +683,7 @@ const Navbar: React.FC<NavbarProps> = ({
             </div>
           </div>
 
-          {/* Mobile Search Dropdown - Appears when search icon is clicked */}
+          {/* Mobile Search Dropdown - Commented out for future implementation */}
           {/* {isSearchVisible && (
             <div
               className={`
@@ -773,8 +775,8 @@ const Navbar: React.FC<NavbarProps> = ({
                   About Us
                 </a>
                 
-                {/* Mobile User Authentication */}
-                <div className="border-t border-gray-600/40 pt-2 mt-2">
+                {/* Mobile Authentication Links for small screens */}
+                <div className="block sm:hidden pt-2 border-t border-gray-600/30">
                   <button
                     onClick={() => {
                       setIsSignInModalOpen(true);
