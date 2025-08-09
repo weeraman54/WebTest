@@ -341,81 +341,72 @@ const Navbar: React.FC<NavbarProps> = ({
   const shouldBeTransparent = !enableShrinking && isScrolled && !isNavbarHovered; // Full transparent when shrinking disabled and not hovered
 
   return (
-    <nav
-      className={`
-        w-full sticky top-0 z-50 navbar-container transition-all duration-300 ease-in-out flex justify-center
-        ${
-          shouldBeTransparent
-            ? "bg-transparent"
-            : shouldShrink
-            ? "bg-transparent"
-            : "shadow-md"
-        }
-      `}
-      style={{
-        backgroundColor: shouldBeTransparent ? 'transparent' : shouldShrink ? 'transparent' : '#000308',
-        isolation: 'isolate',
-        zIndex: 50,
-        overflow: 'visible',
-      }}
-      onMouseEnter={() => setIsNavbarHovered(true)}
-      onMouseLeave={() => setIsNavbarHovered(false)}
-    >
-      <div
+    <>
+      <nav
         className={`
-          px-2 sm:px-4 lg:px-8 transition-all duration-300 ease-in-out
+          w-full sticky top-0 z-50 navbar-container transition-all duration-300 ease-in-out flex justify-center
           ${
             shouldBeTransparent
-              ? "w-full bg-transparent" // Full transparent when shrinking disabled and not hovered
+              ? "bg-transparent"
               : shouldShrink
-              ? "w-full sm:w-1/2 backdrop-blur-md sm:rounded-b-2xl sm:mx-auto shadow-lg border border-white/10"
-              : "w-full"
+              ? "bg-transparent"
+              : "shadow-md"
           }
         `}
         style={{
-          backgroundColor: shouldBeTransparent 
-            ? 'transparent' 
-            : shouldShrink 
-            ? 'rgba(0, 3, 8, 0.2)'
-            : '#000308',
-          ...((!enableShrinking && isScrolled && isNavbarHovered) && {
-            backgroundColor: 'rgba(0, 3, 8, 0.95)',
-            backdropFilter: 'blur(12px)',
-            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
-          })
+          backgroundColor: shouldBeTransparent ? 'transparent' : shouldShrink ? 'transparent' : '#000308',
+          isolation: 'isolate',
+          zIndex: 50,
+          overflow: 'visible',
         }}
+        onMouseEnter={() => setIsNavbarHovered(true)}
+        onMouseLeave={() => setIsNavbarHovered(false)}
       >
-        <div className={`flex items-center justify-between ${currentSizeConfig.height}`}>
-          {/* Left Section - Logo */}
-          <div className="flex items-center justify-start flex-shrink-0 min-w-0">
-            <div className="flex-shrink-0 flex items-center">
-              <img
-                src={Images.NavbarLogo}
-                alt="Geolex Logo"
-                className={`
-                  ${currentSizeConfig.logoSize} w-auto transition-all duration-700 ease-in-out max-w-none
-                  ${
-                    shouldShrink
-                      ? `opacity-100 ${currentSizeConfig.logoScaleShrunken}`
-                      : `opacity-100 ${currentSizeConfig.logoScale}`
-                  }
-                `}
-              />
+        <div
+          className={`
+            px-2 sm:px-4 lg:px-8 transition-all duration-300 ease-in-out
+            ${
+              shouldBeTransparent
+                ? "w-full bg-transparent"
+                : shouldShrink
+                ? "w-full sm:w-1/2 backdrop-blur-md sm:rounded-b-2xl sm:mx-auto shadow-lg border border-white/10"
+                : "w-full"
+            }
+          `}
+          style={{
+            backgroundColor: shouldBeTransparent 
+              ? 'transparent' 
+              : shouldShrink 
+              ? 'rgba(0, 3, 8, 0.2)'
+              : '#000308',
+            ...((!enableShrinking && isScrolled && isNavbarHovered) && {
+              backgroundColor: 'rgba(0, 3, 8, 0.95)',
+              backdropFilter: 'blur(12px)',
+              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
+            })
+          }}
+        >
+          <div className={`flex items-center justify-between ${currentSizeConfig.height}`}>
+            {/* Left Section - Logo */}
+            <div className="flex items-center justify-start flex-shrink-0 min-w-0">
+              <div className="flex-shrink-0 flex items-center">
+                <img
+                  src={Images.NavbarLogo}
+                  alt="Geolex Logo"
+                  className={`
+                    ${currentSizeConfig.logoSize} w-auto transition-all duration-700 ease-in-out max-w-none
+                    ${
+                      shouldShrink
+                        ? `opacity-100 ${currentSizeConfig.logoScaleShrunken}`
+                        : `opacity-100 ${currentSizeConfig.logoScale}`
+                    }
+                  `}
+                />
+              </div>
             </div>
-          </div>
 
-          {/* Center Section - Navigation and Search */}
-          <div className="hidden md:flex items-center justify-center flex-shrink-0">
-            <div
-              className={`
-              flex items-center justify-center transition-all duration-700 ease-in-out
-              ${isTabletSize 
-                ? (shouldShrink ? "space-x-2" : "space-x-3") 
-                : (shouldShrink ? currentSizeConfig.spacingShrunken : currentSizeConfig.spacing)
-              }
-            `}
-            >
-              {/* Navigation Links */}
+            {/* Center Section - Navigation and Search */}
+            <div className="hidden md:flex items-center justify-center flex-shrink-0">
               <div
                 className={`
                 flex items-center justify-center transition-all duration-700 ease-in-out
@@ -425,80 +416,263 @@ const Navbar: React.FC<NavbarProps> = ({
                 }
               `}
               >
-                <a
-                  href="/"
+                {/* Navigation Links */}
+                <div
                   className={`
-                    ${isTabletSize ? "px-2 py-2" : currentSizeConfig.padding} font-medium transition-all duration-700 whitespace-nowrap flex items-center
-                    ${
-                      shouldShrink
-                        ? `${isTabletSize ? "text-sm" : currentSizeConfig.textSizeShrunken} text-white hover:text-[#13ee9e]`
-                        : `${isTabletSize ? "text-base" : currentSizeConfig.textSize} text-white hover:text-[#13ee9e]`
-                    }
-                  `}
+                  flex items-center justify-center transition-all duration-700 ease-in-out
+                  ${isTabletSize 
+                    ? (shouldShrink ? "space-x-2" : "space-x-3") 
+                    : (shouldShrink ? currentSizeConfig.spacingShrunken : currentSizeConfig.spacing)
+                  }
+                `}
                 >
-                  Home
-                </a>
-                
-                {/* Categories Dropdown */}
-                <div className="relative flex items-center categories-dropdown-area">
-                  <div className="relative flex items-center">
-                    <button
-                      onClick={handleCategoriesToggle}
-                      className={`
-                        ${isTabletSize ? "px-2 py-2" : currentSizeConfig.padding} font-medium transition-all duration-700 whitespace-nowrap cursor-pointer flex items-center bg-transparent border-none
-                        ${
-                          shouldShrink
-                            ? `${isTabletSize ? "text-sm" : currentSizeConfig.textSizeShrunken} text-white hover:text-[#13ee9e]`
-                            : `${isTabletSize ? "text-base" : currentSizeConfig.textSize} text-white hover:text-[#13ee9e]`
-                        }
-                        ${isCategoriesVisible ? 'text-[#13ee9e]' : ''}
-                      `}
-                    >
-                      Categories
-                    </button>
-                  </div>
-                </div>
-                
-                {/* Categories Dropdown - Fixed positioning spanning full viewport */}
-                {isCategoriesVisible && (
-                  <div 
-                    className="categories-dropdown-container categories-dropdown-area"
-                    onClick={handleCategoriesDropdownClick}
+                  <a
+                    href="/"
+                    className={`
+                      ${isTabletSize ? "px-2 py-2" : currentSizeConfig.padding} font-medium transition-all duration-700 whitespace-nowrap flex items-center
+                      ${
+                        shouldShrink
+                          ? `${isTabletSize ? "text-sm" : currentSizeConfig.textSizeShrunken} text-white hover:text-[#13ee9e]`
+                          : `${isTabletSize ? "text-base" : currentSizeConfig.textSize} text-white hover:text-[#13ee9e]`
+                      }
+                    `}
                   >
-                    <div className="w-full">
-                      <Categories />
+                    Home
+                  </a>
+                  
+                  {/* Categories Button - just the button, dropdown moved outside */}
+                  <div className="relative flex items-center categories-dropdown-area">
+                    <div className="relative flex items-center">
+                      <button
+                        onClick={handleCategoriesToggle}
+                        className={`
+                          ${isTabletSize ? "px-2 py-2" : currentSizeConfig.padding} font-medium transition-all duration-700 whitespace-nowrap cursor-pointer flex items-center bg-transparent border-none
+                          ${
+                            shouldShrink
+                              ? `${isTabletSize ? "text-sm" : currentSizeConfig.textSizeShrunken} text-white hover:text-[#13ee9e]`
+                              : `${isTabletSize ? "text-base" : currentSizeConfig.textSize} text-white hover:text-[#13ee9e]`
+                          }
+                          ${isCategoriesVisible ? 'text-[#13ee9e]' : ''}
+                        `}
+                      >
+                        Categories
+                      </button>
                     </div>
                   </div>
-                )}
-                
-                <a
-                  href="/about"
-                  className={`
-                    ${isTabletSize ? "px-2 py-2" : currentSizeConfig.padding} font-medium transition-all duration-700 whitespace-nowrap navbar-links flex items-center
-                    ${
-                      shouldShrink
-                        ? `${isTabletSize ? "text-sm" : currentSizeConfig.textSizeShrunken} text-white hover:text-[#13ee9e]`
-                        : `${isTabletSize ? "text-base" : currentSizeConfig.textSize} text-white hover:text-[#13ee9e]`
-                    }
-                  `}
-                >
-                  About Us
-                </a>
-              </div>
+                  
+                  <a
+                    href="/about"
+                    className={`
+                      ${isTabletSize ? "px-2 py-2" : currentSizeConfig.padding} font-medium transition-all duration-700 whitespace-nowrap navbar-links flex items-center
+                      ${
+                        shouldShrink
+                          ? `${isTabletSize ? "text-sm" : currentSizeConfig.textSizeShrunken} text-white hover:text-[#13ee9e]`
+                          : `${isTabletSize ? "text-base" : currentSizeConfig.textSize} text-white hover:text-[#13ee9e]`
+                      }
+                    `}
+                  >
+                    About Us
+                  </a>
+                </div>
 
-              {/* Search Bar - Hidden on screens smaller than 1280px to prevent overlap */}
+                {/* Search Bar - Hidden on screens smaller than 1280px to prevent overlap */}
+                <div
+                  className={`
+                  hidden xl:flex items-center transition-all duration-700 ease-in-out
+                  ${isTabletSize 
+                    ? (shouldShrink ? "w-40" : "w-48") 
+                    : (shouldShrink ? currentSizeConfig.searchWidthShrunken : currentSizeConfig.searchWidth)
+                  }
+                `}
+                >
+                  <div className="relative w-full flex items-center">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <MagnifyingGlassIcon className={`text-gray-400 ${shouldShrink ? "h-4 w-4" : "h-5 w-5"}`} />
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="Search products..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className={`
+                        text-white block w-full pl-10 pr-3 ${isTabletSize ? "py-2" : (shouldShrink ? currentSizeConfig.inputPadding : currentSizeConfig.inputPadding)} border rounded-lg leading-5 placeholder-gray-400 
+                        focus:outline-none focus:placeholder-gray-300 focus:ring-1 focus:ring-[#13ee9e] focus:border-[#13ee9e]
+                        transition-all duration-700
+                        ${
+                          shouldBeTransparent
+                            ? `${isTabletSize ? "text-sm" : (shouldShrink ? currentSizeConfig.textSizeShrunken : currentSizeConfig.textSize)} border-gray-600/20 bg-gray-800/10`
+                            : shouldShrink
+                            ? `${isTabletSize ? "text-sm" : currentSizeConfig.textSizeShrunken} border-gray-600/40 bg-gray-800/60 backdrop-blur-sm`
+                            : `${isTabletSize ? "text-base" : currentSizeConfig.textSize} border-gray-600 bg-gray-800`
+                        }
+                      `}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Section - Icons */}
+            <div className="flex items-center justify-end flex-shrink-0 min-w-0">
               <div
                 className={`
-                hidden xl:flex items-center transition-all duration-700 ease-in-out
+                flex items-center transition-all duration-700 ease-in-out
                 ${isTabletSize 
-                  ? (shouldShrink ? "w-40" : "w-48") 
-                  : (shouldShrink ? currentSizeConfig.searchWidthShrunken : currentSizeConfig.searchWidth)
+                  ? (shouldShrink ? "space-x-1" : "space-x-2") 
+                  : (shouldShrink ? currentSizeConfig.spacingShrunken : currentSizeConfig.spacing)
                 }
               `}
               >
-                <div className="relative w-full flex items-center">
+                {/* Search Icon - Visible on screens smaller than xl (1280px) */}
+                <button
+                  className={`
+                    xl:hidden p-2 transition-all duration-700 relative search-dropdown
+                    text-white hover:text-[#13ee9e]
+                  `}
+                  onClick={() => setIsSearchVisible(!isSearchVisible)}
+                >
+                  <MagnifyingGlassIcon
+                    className={`
+                    transition-all duration-700 ease-in-out
+                    ${isTabletSize 
+                      ? (shouldShrink ? "h-5 w-5" : "h-6 w-6") 
+                      : (shouldShrink ? currentSizeConfig.iconSizeShrunken : currentSizeConfig.iconSize)
+                    }
+                  `}
+                  />
+                </button>
+
+                {/* Wishlist Icon */}
+                <div 
+                  className="relative"
+                  onMouseEnter={() => setIsWishlistVisible(true)}
+                  onMouseLeave={() => setIsWishlistVisible(false)}
+                >
+                  <button
+                    className={`
+                      p-2 transition-all duration-700 relative
+                      text-white hover:text-[#13ee9e]
+                    `}
+                  >
+                    <HeartIcon
+                      className={`
+                      transition-all duration-700 ease-in-out
+                      ${isTabletSize 
+                        ? (shouldShrink ? "h-5 w-5" : "h-6 w-6") 
+                        : (shouldShrink ? currentSizeConfig.iconSizeShrunken : currentSizeConfig.iconSize)
+                      }
+                    `}
+                    />
+                    {totalWishlistItems > 0 && (
+                      <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
+                        {totalWishlistItems}
+                      </span>
+                    )}
+                  </button>
+                  
+                  {/* Wishlist Dropdown */}
+                  <WishlistDropdown
+                    isVisible={isWishlistVisible}
+                    items={wishlistItems}
+                    onAddToCart={handleAddToCartFromWishlist}
+                    onRemoveItem={handleRemoveFromWishlist}
+                    onMouseEnter={() => setIsWishlistVisible(true)}
+                    onMouseLeave={() => setIsWishlistVisible(false)}
+                  />
+                </div>
+
+                {/* Cart Icon */}
+                <div 
+                  className="relative"
+                  onMouseEnter={() => setIsCartVisible(true)}
+                  onMouseLeave={() => setIsCartVisible(false)}
+                >
+                  <button
+                    className={`
+                      p-2 transition-all duration-700 relative
+                      text-white hover:text-[#13ee9e]
+                    `}
+                  >
+                    <ShoppingCartIcon
+                      className={`
+                      transition-all duration-700 ease-in-out
+                      ${isTabletSize 
+                        ? (shouldShrink ? "h-5 w-5" : "h-6 w-6") 
+                        : (shouldShrink ? currentSizeConfig.iconSizeShrunken : currentSizeConfig.iconSize)
+                      }
+                    `}
+                    />
+                    {totalCartItems > 0 && (
+                      <span className="absolute -top-1 -right-1 bg-[#13ee9e] text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
+                        {totalCartItems}
+                      </span>
+                    )}
+                  </button>
+
+                  {/* Cart Dropdown */}
+                  <CartDropdown
+                    isVisible={isCartVisible}
+                    items={cartItems}
+                    onUpdateQuantity={handleUpdateQuantity}
+                    onRemoveItem={handleRemoveItem}
+                    onMoveToWishlist={handleMoveToWishlist}
+                    onClose={() => setIsCartVisible(false)}
+                    onMouseEnter={() => setIsCartVisible(true)}
+                    onMouseLeave={() => setIsCartVisible(false)}
+                  />
+                </div>
+
+                {/* Profile Icon - Hidden on very small screens to save space */}
+                <div className="hidden sm:block">
+                  <UserProfileDropdown 
+                    onSignInClick={() => setIsSignInModalOpen(true)}
+                    onSignUpClick={() => setIsSignUpModalOpen(true)} 
+                  />
+                </div>
+
+                {/* Mobile Menu Button - High priority for visibility on small screens */}
+                <button
+                  className={`
+                    md:hidden p-1 sm:p-2 transition-all duration-700 flex-shrink-0
+                    text-white hover:text-[#13ee9e] border border-transparent hover:border-[#13ee9e]/30 rounded
+                  `}
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                >
+                  {isMenuOpen ? (
+                    <XMarkIcon className="h-5 w-5 sm:h-6 sm:w-6" />
+                  ) : (
+                    <Bars3Icon className="h-5 w-5 sm:h-6 sm:w-6" />
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile Search Dropdown - Appears when search icon is clicked */}
+          {isSearchVisible && (
+            <div
+              className={`
+                xl:hidden transition-all duration-300 ease-in-out border-t search-dropdown
+                ${
+                  shouldBeTransparent
+                    ? "bg-transparent border-gray-600/20"
+                    : shouldShrink
+                    ? "backdrop-blur-sm border-white/10"
+                    : "border-gray-600"
+                }
+              `}
+              style={{
+                backgroundColor: shouldBeTransparent 
+                  ? 'transparent' 
+                  : shouldShrink 
+                  ? 'rgba(0, 3, 8, 0.2)'
+                  : '#000308'
+              }}
+            >
+              <div className="px-2 sm:px-4 py-3">
+                <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <MagnifyingGlassIcon className={`text-gray-400 ${shouldShrink ? "h-4 w-4" : "h-5 w-5"}`} />
+                    <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
                   </div>
                   <input
                     type="text"
@@ -506,266 +680,94 @@ const Navbar: React.FC<NavbarProps> = ({
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className={`
-                      text-white block w-full pl-10 pr-3 ${isTabletSize ? "py-2" : (shouldShrink ? currentSizeConfig.inputPadding : currentSizeConfig.inputPadding)} border rounded-lg leading-5 placeholder-gray-400 
-                      focus:outline-none focus:placeholder-gray-300 focus:ring-1 focus:ring-[#13ee9e] focus:border-[#13ee9e]
+                      text-white block w-full pl-10 pr-3 py-2 border rounded-lg leading-5 placeholder-gray-400 
+                      focus:outline-none focus:placeholder-gray-300 focus:ring-1 focus:ring-[#13ee9e] focus:border-[#13ee9e] text-base
                       transition-all duration-700
                       ${
                         shouldBeTransparent
-                          ? `${isTabletSize ? "text-sm" : (shouldShrink ? currentSizeConfig.textSizeShrunken : currentSizeConfig.textSize)} border-gray-600/20 bg-gray-800/10`
+                          ? "border-gray-600/20 bg-gray-800/10"
                           : shouldShrink
-                          ? `${isTabletSize ? "text-sm" : currentSizeConfig.textSizeShrunken} border-gray-600/40 bg-gray-800/60 backdrop-blur-sm`
-                          : `${isTabletSize ? "text-base" : currentSizeConfig.textSize} border-gray-600 bg-gray-800`
+                          ? "border-gray-600/40 bg-gray-800/60"
+                          : "border-gray-600 bg-gray-800"
                       }
                     `}
+                    autoFocus
                   />
                 </div>
               </div>
             </div>
-          </div>
+          )}
 
-          {/* Right Section - Icons */}
-          <div className="flex items-center justify-end flex-shrink-0 min-w-0">
+          {/* Mobile Menu */}
+          {isMenuOpen && (
             <div
               className={`
-              flex items-center transition-all duration-700 ease-in-out
-              ${isTabletSize 
-                ? (shouldShrink ? "space-x-1" : "space-x-2") 
-                : (shouldShrink ? currentSizeConfig.spacingShrunken : currentSizeConfig.spacing)
-              }
-            `}
+                md:hidden transition-all duration-700
+                ${
+                  shouldBeTransparent
+                    ? "bg-transparent"
+                    : shouldShrink
+                    ? "backdrop-blur-sm border-t border-white/10"
+                    : "border-t border-gray-600"
+                }
+              `}
+              style={{
+                backgroundColor: shouldBeTransparent 
+                  ? 'transparent' 
+                  : shouldShrink 
+                  ? 'rgba(0, 3, 8, 0.2)'
+                  : '#000308'
+              }}
             >
-              {/* Search Icon - Visible on screens smaller than xl (1280px) */}
-              <button
-                className={`
-                  xl:hidden p-2 transition-all duration-700 relative search-dropdown
-                  text-white hover:text-[#13ee9e]
-                `}
-                onClick={() => setIsSearchVisible(!isSearchVisible)}
-              >
-                <MagnifyingGlassIcon
+              <div className="px-1 sm:px-2 pt-2 pb-3 space-y-1">
+                {/* Mobile Navigation Links */}
+                <a
+                  href="/"
                   className={`
-                  transition-all duration-700 ease-in-out
-                  ${isTabletSize 
-                    ? (shouldShrink ? "h-5 w-5" : "h-6 w-6") 
-                    : (shouldShrink ? currentSizeConfig.iconSizeShrunken : currentSizeConfig.iconSize)
-                  }
-                `}
-                />
-              </button>
-
-              {/* Wishlist Icon */}
-              <div 
-                className="relative"
-                onMouseEnter={() => setIsWishlistVisible(true)}
-                onMouseLeave={() => setIsWishlistVisible(false)}
-              >
-                <button
-                  className={`
-                    p-2 transition-all duration-700 relative
+                    block ${currentSizeConfig.padding} ${currentSizeConfig.textSizeShrunken} font-medium whitespace-nowrap navbar-links transition-all duration-700
                     text-white hover:text-[#13ee9e]
                   `}
                 >
-                  <HeartIcon
-                    className={`
-                    transition-all duration-700 ease-in-out
-                    ${isTabletSize 
-                      ? (shouldShrink ? "h-5 w-5" : "h-6 w-6") 
-                      : (shouldShrink ? currentSizeConfig.iconSizeShrunken : currentSizeConfig.iconSize)
-                    }
-                  `}
-                  />
-                  {totalWishlistItems > 0 && (
-                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
-                      {totalWishlistItems}
-                    </span>
-                  )}
-                </button>
-                
-                {/* Wishlist Dropdown */}
-                <WishlistDropdown
-                  isVisible={isWishlistVisible}
-                  items={wishlistItems}
-                  onAddToCart={handleAddToCartFromWishlist}
-                  onRemoveItem={handleRemoveFromWishlist}
-                  onMouseEnter={() => setIsWishlistVisible(true)}
-                  onMouseLeave={() => setIsWishlistVisible(false)}
-                />
-              </div>
-
-              {/* Cart Icon */}
-              <div 
-                className="relative"
-                onMouseEnter={() => setIsCartVisible(true)}
-                onMouseLeave={() => setIsCartVisible(false)}
-              >
-                <button
+                  Home
+                </a>
+                <a
+                  href="/about"
                   className={`
-                    p-2 transition-all duration-700 relative
+                    block ${currentSizeConfig.padding} ${currentSizeConfig.textSizeShrunken} font-medium whitespace-nowrap navbar-links transition-all duration-700
                     text-white hover:text-[#13ee9e]
                   `}
                 >
-                  <ShoppingCartIcon
-                    className={`
-                    transition-all duration-700 ease-in-out
-                    ${isTabletSize 
-                      ? (shouldShrink ? "h-5 w-5" : "h-6 w-6") 
-                      : (shouldShrink ? currentSizeConfig.iconSizeShrunken : currentSizeConfig.iconSize)
-                    }
-                  `}
-                  />
-                  {totalCartItems > 0 && (
-                    <span className="absolute -top-1 -right-1 bg-[#13ee9e] text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
-                      {totalCartItems}
-                    </span>
-                  )}
-                </button>
-
-                {/* Cart Dropdown */}
-                <CartDropdown
-                  isVisible={isCartVisible}
-                  items={cartItems}
-                  onUpdateQuantity={handleUpdateQuantity}
-                  onRemoveItem={handleRemoveItem}
-                  onMoveToWishlist={handleMoveToWishlist}
-                  onClose={() => setIsCartVisible(false)}
-                  onMouseEnter={() => setIsCartVisible(true)}
-                  onMouseLeave={() => setIsCartVisible(false)}
-                />
+                  About Us
+                </a>
               </div>
-
-              {/* Profile Icon - Hidden on very small screens to save space */}
-              <div className="hidden sm:block">
-                <UserProfileDropdown 
-                  onSignInClick={() => setIsSignInModalOpen(true)}
-                  onSignUpClick={() => setIsSignUpModalOpen(true)} 
-                />
-              </div>
-
-              {/* Mobile Menu Button - High priority for visibility on small screens */}
-              <button
-                className={`
-                  md:hidden p-1 sm:p-2 transition-all duration-700 flex-shrink-0
-                  text-white hover:text-[#13ee9e] border border-transparent hover:border-[#13ee9e]/30 rounded
-                `}
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-              >
-                {isMenuOpen ? (
-                  <XMarkIcon className="h-5 w-5 sm:h-6 sm:w-6" />
-                ) : (
-                  <Bars3Icon className="h-5 w-5 sm:h-6 sm:w-6" />
-                )}
-              </button>
             </div>
-          </div>
+          )}
         </div>
 
-        {/* Mobile Search Dropdown - Appears when search icon is clicked */}
-        {isSearchVisible && (
-          <div
-            className={`
-              xl:hidden transition-all duration-300 ease-in-out border-t search-dropdown
-              ${
-                shouldBeTransparent
-                  ? "bg-transparent border-gray-600/20"
-                  : shouldShrink
-                  ? "backdrop-blur-sm border-white/10"
-                  : "border-gray-600"
-              }
-            `}
-            style={{
-              backgroundColor: shouldBeTransparent 
-                ? 'transparent' 
-                : shouldShrink 
-                ? 'rgba(0, 3, 8, 0.2)'
-                : '#000308'
-            }}
-          >
-            <div className="px-2 sm:px-4 py-3">
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  type="text"
-                  placeholder="Search products..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className={`
-                    text-white block w-full pl-10 pr-3 py-2 border rounded-lg leading-5 placeholder-gray-400 
-                    focus:outline-none focus:placeholder-gray-300 focus:ring-1 focus:ring-[#13ee9e] focus:border-[#13ee9e] text-base
-                    transition-all duration-700
-                    ${
-                      shouldBeTransparent
-                        ? "border-gray-600/20 bg-gray-800/10"
-                        : shouldShrink
-                        ? "border-gray-600/40 bg-gray-800/60"
-                        : "border-gray-600 bg-gray-800"
-                    }
-                  `}
-                  autoFocus
-                />
-              </div>
-            </div>
-          </div>
-        )}
+        {/* Authentication Modals */}
+        <SignInModal 
+          isOpen={isSignInModalOpen} 
+          onClose={() => setIsSignInModalOpen(false)} 
+        />
+        
+        <SignUpModal 
+          isOpen={isSignUpModalOpen} 
+          onClose={() => setIsSignUpModalOpen(false)} 
+        />
+      </nav>
 
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div
-            className={`
-              md:hidden transition-all duration-700
-              ${
-                shouldBeTransparent
-                  ? "bg-transparent"
-                  : shouldShrink
-                  ? "backdrop-blur-sm border-t border-white/10"
-                  : "border-t border-gray-600"
-              }
-            `}
-            style={{
-              backgroundColor: shouldBeTransparent 
-                ? 'transparent' 
-                : shouldShrink 
-                ? 'rgba(0, 3, 8, 0.2)'
-                : '#000308'
-            }}
-          >
-            <div className="px-1 sm:px-2 pt-2 pb-3 space-y-1">
-              {/* Mobile Navigation Links */}
-              <a
-                href="/"
-                className={`
-                  block ${currentSizeConfig.padding} ${currentSizeConfig.textSizeShrunken} font-medium whitespace-nowrap navbar-links transition-all duration-700
-                  text-white hover:text-[#13ee9e]
-                `}
-              >
-                Home
-              </a>
-              <a
-                href="/about"
-                className={`
-                  block ${currentSizeConfig.padding} ${currentSizeConfig.textSizeShrunken} font-medium whitespace-nowrap navbar-links transition-all duration-700
-                  text-white hover:text-[#13ee9e]
-                `}
-              >
-                About Us
-              </a>
-            </div>
+      {/* Categories Dropdown - Now completely outside the navbar structure */}
+      {isCategoriesVisible && (
+        <div 
+          className="categories-dropdown-container categories-dropdown-area"
+          onClick={handleCategoriesDropdownClick}
+        >
+          <div className="w-full">
+            <Categories />
           </div>
-        )}
-      </div>
-
-      {/* Authentication Modals */}
-      <SignInModal 
-        isOpen={isSignInModalOpen} 
-        onClose={() => setIsSignInModalOpen(false)} 
-      />
-      
-      <SignUpModal 
-        isOpen={isSignUpModalOpen} 
-        onClose={() => setIsSignUpModalOpen(false)} 
-      />
-    </nav>
+        </div>
+      )}
+    </>
   );
 };
 
